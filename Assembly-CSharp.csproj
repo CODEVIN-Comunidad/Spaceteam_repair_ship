@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{8C79F7C2-4C47-5E77-24EE-AC314B51E26D}</ProjectGuid>
+    <ProjectGuid>{2CF853CD-AEF5-FB4F-06E5-88F4707E5604}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -60,67 +60,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\_INTERNAL_\Scripts\BaseClasses\Action.cs" />
-    <Compile Include="Assets\_INTERNAL_\Scripts\BaseClasses\ConditionBase.cs" />
-    <Compile Include="Assets\_INTERNAL_\Scripts\BaseClasses\Physics2DObject.cs" />
-    <Compile Include="Assets\_INTERNAL_\Scripts\UserInterface\BalloonScript.cs" />
-    <Compile Include="Assets\_INTERNAL_\Scripts\UserInterface\DialogueSystem.cs" />
-    <Compile Include="Assets\_INTERNAL_\Scripts\UserInterface\UIItemScript.cs" />
-    <Compile Include="Assets\_INTERNAL_\Scripts\UserInterface\UIScript.cs" />
-    <Compile Include="Assets\_INTERNAL_\Scripts\Utilities\Enums.cs" />
-    <Compile Include="Assets\_INTERNAL_\Scripts\Utilities\InventoryResources.cs" />
-    <Compile Include="Assets\_INTERNAL_\Scripts\Utilities\Utils.cs" />
-    <Compile Include="Assets\Scripts\Attributes\BulletAttribute.cs" />
-    <Compile Include="Assets\Scripts\Attributes\CollectableAttribute.cs" />
-    <Compile Include="Assets\Scripts\Attributes\DestroyForPointsAttribute.cs" />
-    <Compile Include="Assets\Scripts\Attributes\HealthSystemAttribute.cs" />
-    <Compile Include="Assets\Scripts\Attributes\ModifyHealthAttribute.cs" />
-    <Compile Include="Assets\Scripts\Attributes\ResourceAttribute.cs" />
-    <Compile Include="Assets\Scripts\Conditions\Actions\ConsumeResourceAction.cs" />
-    <Compile Include="Assets\Scripts\Conditions\Actions\CreateObjectAction.cs" />
-    <Compile Include="Assets\Scripts\Conditions\Actions\DestroyAction.cs" />
-    <Compile Include="Assets\Scripts\Conditions\Actions\DialogueBalloonAction.cs" />
-    <Compile Include="Assets\Scripts\Conditions\Actions\LoadLevelAction.cs" />
-    <Compile Include="Assets\Scripts\Conditions\Actions\OnOffAction.cs" />
-    <Compile Include="Assets\Scripts\Conditions\Actions\TeleportAction.cs" />
-    <Compile Include="Assets\Scripts\Conditions\ConditionArea.cs" />
-    <Compile Include="Assets\Scripts\Conditions\ConditionCollision.cs" />
-    <Compile Include="Assets\Scripts\Conditions\ConditionKeyPress.cs" />
-    <Compile Include="Assets\Scripts\Conditions\ConditionRepeat.cs" />
-    <Compile Include="Assets\Scripts\Gameplay\ObjectCreatorArea.cs" />
-    <Compile Include="Assets\Scripts\Gameplay\ObjectShooter.cs" />
-    <Compile Include="Assets\Scripts\Gameplay\PickUpAndHold.cs" />
-    <Compile Include="Assets\Scripts\Gameplay\TimedSelfDestruct.cs" />
-    <Compile Include="Assets\Scripts\Movement\AutoMove.cs" />
-    <Compile Include="Assets\Scripts\Movement\AutoRotate.cs" />
-    <Compile Include="Assets\Scripts\Movement\CameraFollow.cs" />
-    <Compile Include="Assets\Scripts\Movement\FollowTarget.cs" />
-    <Compile Include="Assets\Scripts\Movement\Jump.cs" />
-    <Compile Include="Assets\Scripts\Movement\Move.cs" />
-    <Compile Include="Assets\Scripts\Movement\Patrol.cs" />
-    <Compile Include="Assets\Scripts\Movement\Push.cs" />
-    <Compile Include="Assets\Scripts\Movement\Rotate.cs" />
-    <Compile Include="Assets\Scripts\Movement\Wander.cs" />
+    <Compile Include="Assets\Scripts_GGJ2020\CameraFollow.cs" />
     <Compile Include="Assets\Scripts_GGJ2020\Enemy.cs" />
+    <Compile Include="Assets\Scripts_GGJ2020\Enemy_Patrol.cs" />
     <Compile Include="Assets\Scripts_GGJ2020\Level_Generator.cs" />
     <Compile Include="Assets\Scripts_GGJ2020\LevelGeneration.cs" />
+    <Compile Include="Assets\Scripts_GGJ2020\Object.cs" />
+    <Compile Include="Assets\Scripts_GGJ2020\ParalaxController.cs" />
     <Compile Include="Assets\Scripts_GGJ2020\Player_Attack.cs" />
     <Compile Include="Assets\Scripts_GGJ2020\Player_Controller.cs" />
     <Compile Include="Assets\Scripts_GGJ2020\Room.cs" />
+    <None Include="Assets\Sprites\Tilemaps\Level02\License.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/Asus ROG/Documents/GitHub/GGJ2020_Project/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/Asus ROG/Documents/GitHub/GGJ2020_Project/Spaceteam_repair_ship/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/Asus ROG/Documents/GitHub/GGJ2020_Project/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/Asus ROG/Documents/GitHub/GGJ2020_Project/Spaceteam_repair_ship/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/Asus ROG/Documents/GitHub/GGJ2020_Project/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/Asus ROG/Documents/GitHub/GGJ2020_Project/Spaceteam_repair_ship/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/Asus ROG/Documents/GitHub/GGJ2020_Project/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/Asus ROG/Documents/GitHub/GGJ2020_Project/Spaceteam_repair_ship/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Users/Asus ROG/Documents/GitHub/GGJ2020_Project/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>C:/Users/Asus ROG/Documents/GitHub/GGJ2020_Project/Spaceteam_repair_ship/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.18f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -324,13 +288,13 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.18f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>C:/Users/Asus ROG/Documents/GitHub/GGJ2020_Project/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>C:/Users/Asus ROG/Documents/GitHub/GGJ2020_Project/Spaceteam_repair_ship/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>C:/Users/Asus ROG/Documents/GitHub/GGJ2020_Project/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/Asus ROG/Documents/GitHub/GGJ2020_Project/Spaceteam_repair_ship/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>C:/Users/Asus ROG/Documents/GitHub/GGJ2020_Project/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>C:/Users/Asus ROG/Documents/GitHub/GGJ2020_Project/Spaceteam_repair_ship/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.18f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

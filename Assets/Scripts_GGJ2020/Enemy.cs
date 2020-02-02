@@ -24,11 +24,13 @@ public class Enemy : MonoBehaviour
     {
         if(dazedTime <= 0)
         {
+            anim.SetBool("isHurt", false);
             speed = speedSet;
         }
         else
         {
-            speed = 0.0f;
+            anim.SetBool("isHurt", true);
+            speed = 0;
             dazedTime -= Time.deltaTime;
         }
         
@@ -38,10 +40,12 @@ public class Enemy : MonoBehaviour
         }
 
         transform.Translate(Vector2.left * speed * Time.deltaTime);
+        
     }
 
     public void TakeDamage(int damage)
     {
+        
         dazedTime = startDazedTime;
         Instantiate(bloodEffect, transform.position, Quaternion.identity);
         health -= damage;
