@@ -36,6 +36,8 @@ public class Enemy : MonoBehaviour
         
         if(health <= 0)
         {
+            SoundManagerScript.PlaySound("MDSFX_FoeDown_1_0");
+            //anim.SetBool("isDeath", true);
             Destroy(gameObject);
         }
 

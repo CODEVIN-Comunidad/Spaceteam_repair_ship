@@ -18,7 +18,7 @@ public class ParalaxController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        state = 0;
+        state = 1;
     }
 
     // Update is called once per frame
