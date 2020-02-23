@@ -4,113 +4,162 @@ using UnityEngine;
 
 public class Player1_Controller : MonoBehaviour
 {
+    private AudioSource source;
+
+    //Control de Jugador
+    public KeyCode left;
+    public KeyCode right;
+    public KeyCode jump;
+    public KeyCode action;
+    
     //Control de movimiento
-    public float speed;
+    public float moveSpeed;
     public float jumpForce;
-    private float moveInput;
+    //private float moveInput;
 
-    private Rigidbody2D rb;
-
-    //Flip de personaje
-    private bool facingRight = true;
+    private Rigidbody2D theRB;
 
     //Comprobar si el jugador toca el suelo.
-    private bool isGrounded;
-    public Transform groundCheck;
-    public float checkRadius;
+    public Transform groundCheckPoint;
+    public float groundCheckRadius;
     public LayerMask whatIsGround;
 
+    public Transform attackPoint;
+    public LayerMask enemyLayers;
+    
+    public float attackRange = 0.5f;
+    public int attackDamage = 40;
+
+    public float attackRate = 2f;
+    float nextAttackTime = 0f;
+    
+    private bool isGrounded;
+    
     //Saltos
     private int extraJumps;
     public int extraJumpsValue;
 
+    
+    
     //Vida
     public int health;
 
     public string script;
 
-
     private Animator anim;
+
 
     void Start()
     {
         extraJumps = extraJumpsValue;
-        rb = GetComponent<Rigidbody2D>();
+        theRB = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-   
+        source = GetComponent<AudioSource>();
+
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
-
-        moveInput = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
-
-        if (facingRight == false && moveInput > 0)
-        {
-            anim.SetBool("isWalking", true);
-            Flip();
-        }
-        else if (facingRight == true && moveInput < 0)
-        {
-            anim.SetBool("isWalking", true);
-            Flip();
-        }
-
-
+        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
     }
-
     void Update()
     {
-        
+
+        //----Move----///
+        if (Input.GetKey(left))
+        {
+            theRB.velocity = new Vector2(-moveSpeed, theRB.velocity.y);
+        }
+        else if (Input.GetKey(right))
+        {
+            theRB.velocity = new Vector2(moveSpeed, theRB.velocity.y);
+        }
+        else
+        {
+            theRB.velocity = new Vector2(0, theRB.velocity.y);
+        }
+        anim.SetFloat("Speed", Mathf.Abs(theRB.velocity.x));
+        //----Flip----///
+        if (theRB.velocity.x < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else if (theRB.velocity.x > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        ///----End Move----///
+
+        //----Jump----///
+       
         if (isGrounded == true)
         {
-            anim.SetBool("isJumping", false);
             extraJumps = extraJumpsValue;
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps > 0)
+        if (Input.GetKeyDown(jump) && extraJumps > 0)
         {
-            
-            anim.SetBool("isJumping", true);
-            rb.velocity = Vector2.up * jumpForce;
+
+            theRB.velocity = Vector2.up * jumpForce;
             extraJumps--;
         }
-        else if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps == 0 && isGrounded == true)
+        else if (Input.GetKeyDown(jump) && extraJumps == 0 && isGrounded == true)
         {
-
-            anim.SetBool("isJumping", true);
-            rb.velocity = Vector2.up * jumpForce;
+            theRB.velocity = Vector2.up * jumpForce;
         }
-       
+        anim.SetBool("Grounded", isGrounded);
+        //----End Jump----//
+
+        //----Action----///
+        if (Time.time >= nextAttackTime)
+        {
+            if (Input.GetKeyDown(action))
+            {
+                Attack();
+                nextAttackTime = Time.time + 1f / attackRate;
+            }
+        }
+        //----End Action----//
+
         //Muerte del jugador
-        if (health <= 0)
-        {
-            GameObject.Find("Trevor (Player1)").GetComponent<Player1_Attack>().enabled = false;
-            GetComponent<Player1_Controller>().enabled = false;
-            SoundManagerScript.PlaySound("MDSFX_PlayerDown_1_0");
-            anim.SetBool("isDeath", true);
-        }
+        //if (health <= 0)
+        //{
+        //    GameObject.Find("Trevor (Player1)").GetComponent<Player1_Attack>().enabled = false;
+        //    GetComponent<Player1_Controller>().enabled = false;
+        //    SoundManagerScript.PlaySound("MDSFX_PlayerDown_1_0");
+        //    anim.SetBool("isDeath", true);
+        //}
 
     }
 
-    void Flip()
-    {
-        facingRight = !facingRight;
-        Vector3 Scaler = transform.localScale;
-        Scaler.x *= -1;
-        transform.localScale = Scaler;
-    }
 
     //Vida
+    void Attack()
+    {
+        anim.SetTrigger("Attack");
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            SoundManagerScript.PlaySound("MDSFX_PlayerHitHeavy_1_0");
+            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+            return;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+    
     public void TakeDamage(int damage)
     {
 
-       
+
         health -= damage;
-        
+
     }
 
 }

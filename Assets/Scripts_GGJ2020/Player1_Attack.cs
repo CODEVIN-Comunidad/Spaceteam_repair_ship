@@ -20,7 +20,7 @@ public class Player1_Attack : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
-        source = GetComponent < AudioSource>();
+        source = GetComponent <AudioSource>();
     }
 
     private void Update()
@@ -31,7 +31,7 @@ public class Player1_Attack : MonoBehaviour
             if (Input.GetKey(KeyCode.Space))
             {
                 
-                anim.SetBool("isAttacking", true);
+                anim.SetTrigger("Attack");
                 Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(attackPos.position, new Vector2(attackRangeX, attackRangeY), 0 , whatIsEnemies);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
@@ -52,7 +52,7 @@ public class Player1_Attack : MonoBehaviour
         }
         else
         {
-            anim.SetBool("isAttacking", false);
+            //anim.SetBool("isAttacking", false);
             timeBtAttack -= Time.deltaTime;
         }
     }
