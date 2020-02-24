@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts_GGJ2020\FlashingText.cs" />
     <Compile Include="Assets\Scripts_GGJ2020\LevelGeneration.cs" />
     <Compile Include="Assets\Scripts_GGJ2020\Level_Generator.cs" />
+    <Compile Include="Assets\Scripts_GGJ2020\LifeBar.cs" />
     <Compile Include="Assets\Scripts_GGJ2020\Object.cs" />
     <Compile Include="Assets\Scripts_GGJ2020\ParalaxController.cs" />
     <Compile Include="Assets\Scripts_GGJ2020\Player1_Attack.cs" />

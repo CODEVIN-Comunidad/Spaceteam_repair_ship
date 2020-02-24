@@ -39,10 +39,11 @@ public class Player1_Controller : MonoBehaviour
     private int extraJumps;
     public int extraJumpsValue;
 
-    
-    
     //Vida
     public int health;
+
+    //Vida para Healthbar
+    public LifeBar healthBar;
 
     public string script;
 
@@ -51,6 +52,8 @@ public class Player1_Controller : MonoBehaviour
 
     void Start()
     {
+        healthBar.SetMaxHealt(health);
+        
         extraJumps = extraJumpsValue;
         theRB = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -151,7 +154,7 @@ public class Player1_Controller : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        
+        healthBar.SetHealth(health);
         if (health <= 0)
         {
             Die();
