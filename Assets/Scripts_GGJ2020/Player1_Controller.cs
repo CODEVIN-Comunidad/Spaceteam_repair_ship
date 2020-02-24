@@ -122,13 +122,7 @@ public class Player1_Controller : MonoBehaviour
         //----End Action----//
 
         //Muerte del jugador
-        //if (health <= 0)
-        //{
-        //    GameObject.Find("Trevor (Player1)").GetComponent<Player1_Attack>().enabled = false;
-        //    GetComponent<Player1_Controller>().enabled = false;
-        //    SoundManagerScript.PlaySound("MDSFX_PlayerDown_1_0");
-        //    anim.SetBool("isDeath", true);
-        //}
+        
 
     }
 
@@ -156,10 +150,22 @@ public class Player1_Controller : MonoBehaviour
     
     public void TakeDamage(int damage)
     {
-
-
         health -= damage;
+        
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
 
+    void Die()
+    {
+        SoundManagerScript.PlaySound("MDSFX_PlayerDown_1_0");
+        anim.SetBool("isDeath", true);
+
+        this.enabled = false;
+        //GameObject.Find("Trevor (Player1)").GetComponent<Player1_Attack>().enabled = false;
+        //GetComponent<Player1_Controller>().enabled = false;
     }
 
 }

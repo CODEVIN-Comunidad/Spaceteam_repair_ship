@@ -35,7 +35,7 @@ public class Enemy_Attack : MonoBehaviour
             {
 
                 SoundManagerScript.PlaySound("MDSFX_FoeHit_1_0");
-                anim.SetBool("isAttacking", true);
+                anim.SetTrigger("isAttacking");
                 Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(attackPos.position, new Vector2(attackRangeX, attackRangeY), 0, whatIsEnemies);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
@@ -49,7 +49,7 @@ public class Enemy_Attack : MonoBehaviour
         }
         else
         {
-            anim.SetBool("isAttacking", false);
+            //anim.SetBool("isAttacking", false);
             timeBtAttack -= Time.deltaTime;
         }
     }

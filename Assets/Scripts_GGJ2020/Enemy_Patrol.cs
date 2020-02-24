@@ -11,12 +11,15 @@ public class Enemy_Patrol : MonoBehaviour
     private bool movingRight = true;
 
     public Transform groundDetection;
+    public LayerMask whatIsGround;
 
     private void Update()
     {
-        transform.Translate(Vector2.right * speed * Time.deltaTime);
+        transform.Translate(Vector2.left * speed * Time.deltaTime);
 
-        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 2f);
+        
+
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 2f, whatIsGround);
         if(groundInfo.collider == false)
         {
             if(movingRight == true)

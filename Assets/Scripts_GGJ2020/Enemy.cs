@@ -24,33 +24,42 @@ public class Enemy : MonoBehaviour
     {
         if(dazedTime <= 0)
         {
-            anim.SetBool("isHurt", false);
             speed = speedSet;
         }
         else
         {
-            anim.SetBool("isHurt", true);
+            anim.SetTrigger("isHurt");
             speed = 0;
             dazedTime -= Time.deltaTime;
         }
-        
-        if(health <= 0)
-        {
-            SoundManagerScript.PlaySound("MDSFX_FoeDown_1_0");
-            //anim.SetBool("isDeath", true);
-            Destroy(gameObject);
-        }
-
         transform.Translate(Vector2.left * speed * Time.deltaTime);
-        
     }
-
     public void TakeDamage(int damage)
     {
         
         dazedTime = startDazedTime;
         Instantiate(bloodEffect, transform.position, Quaternion.identity);
         health -= damage;
-        Debug.Log("damage Taken");
+        
+        if(health <= 0)
+        {
+            Die();
+        }
     }
+
+    void Die()
+    {
+        //Debug.Log("Enemy died!");
+
+        SoundManagerScript.PlaySound("MDSFX_FoeDown_1_0");
+
+        anim.SetBool("isRunning", false);
+        anim.SetBool("isDead", true);
+
+        GetComponent<Enemy_Attack>().enabled = false;
+        GetComponent<Enemy_Patrol>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
+    }
+
 }
