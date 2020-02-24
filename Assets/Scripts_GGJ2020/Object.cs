@@ -12,6 +12,8 @@ public class Object : MonoBehaviour
 
     public GameObject bloodEffect;
 
+    public GameObject Coin;
+
     private void Start()
     {
         //anim = GetComponent<Animator>();
@@ -36,6 +38,7 @@ public class Object : MonoBehaviour
         if (healthObject <= 0)
         {
             Destroy(gameObject);
+            Instantiate(Coin, transform.position, Quaternion.identity);
         }
 
        // transform.Translate(Vector2.left * speed * Time.deltaTime);

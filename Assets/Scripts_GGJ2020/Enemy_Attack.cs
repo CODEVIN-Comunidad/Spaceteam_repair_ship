@@ -7,11 +7,12 @@ public class Enemy_Attack : MonoBehaviour
     private float timeBtAttack;
     public float startTimeBtAttack;
 
-    public Transform attackPos;
-    public LayerMask whatIsEnemies;
-    
-    public float attackRangeX;
-    public float attackRangeY;
+    public Transform attackPoint;
+    public LayerMask whatIsPlayer;
+
+    public float attackRange = 0.5f;
+    //public float attackRangeX;
+    //public float attackRangeY;
     public int damage;
     public float playerDistant;
 
@@ -34,12 +35,13 @@ public class Enemy_Attack : MonoBehaviour
             if (Vector2.Distance(transform.position, playerTarget.position) < playerDistant)
             {
 
-                SoundManagerScript.PlaySound("MDSFX_FoeHit_1_0");
-                anim.SetTrigger("isAttacking");
-                Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(attackPos.position, new Vector2(attackRangeX, attackRangeY), 0, whatIsEnemies);
-                for (int i = 0; i < enemiesToDamage.Length; i++)
+                //Collider2D[] PlayerToDamage = Physics2D.OverlapBoxAll(attackPos.position, new Vector2(attackRangeX, attackRangeY), 0, whatIsPlayer);
+                Collider2D[] PlayerToDamage = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, whatIsPlayer);
+                for (int i = 0; i < PlayerToDamage.Length; i++)
                 {
-                    enemiesToDamage[i].GetComponent<Player1_Controller>().TakeDamage(damage);
+                    SoundManagerScript.PlaySound("MDSFX_FoeHit_1_0");
+                    anim.SetTrigger("isAttacking");
+                    PlayerToDamage[i].GetComponent<Player1_Controller>().TakeDamage(damage);
 
                 }
 
@@ -56,7 +58,10 @@ public class Enemy_Attack : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        if (attackPoint == null)
+            return;
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(attackPos.position, new Vector3(attackRangeX, attackRangeY, 1));
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        //Gizmos.DrawWireCube(attackPos.position, new Vector3(attackRangeX, attackRangeY, 1));
     }
 }

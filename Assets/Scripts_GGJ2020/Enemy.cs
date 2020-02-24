@@ -53,12 +53,13 @@ public class Enemy : MonoBehaviour
 
         SoundManagerScript.PlaySound("MDSFX_FoeDown_1_0");
 
-        anim.SetBool("isRunning", false);
-        anim.SetBool("isDead", true);
-
         GetComponent<Enemy_Attack>().enabled = false;
         GetComponent<Enemy_Patrol>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
+
+        anim.SetBool("isRunning", false);
+        anim.SetTrigger("isHurt");
+        anim.SetBool("isDead", true);
         this.enabled = false;
     }
 

@@ -26,6 +26,7 @@ public class Player1_Controller : MonoBehaviour
 
     public Transform attackPoint;
     public LayerMask enemyLayers;
+    public LayerMask objectsLayers;
     
     public float attackRange = 0.5f;
     public int attackDamage = 40;
@@ -136,12 +137,20 @@ public class Player1_Controller : MonoBehaviour
         anim.SetTrigger("Attack");
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        Collider2D[] hitObjects = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, objectsLayers);
+
+        foreach (Collider2D objects in hitObjects)
+        {
+            SoundManagerScript.PlaySound("MDSFX_PlayerHitLight_1_0");
+            objects.GetComponent<Object>().TakeDamage(attackDamage);
+        }
 
         foreach (Collider2D enemy in hitEnemies)
         {
             SoundManagerScript.PlaySound("MDSFX_PlayerHitHeavy_1_0");
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
+
     }
 
     private void OnDrawGizmosSelected()
